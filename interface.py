@@ -37,7 +37,11 @@ class Interface(object):
         self.minimizeBtn.setMinimumSize(QtCore.QSize(20, 20))
         self.minimizeBtn.setMaximumSize(QtCore.QSize(20, 20))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icon/img/minimize.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(
+            QtGui.QPixmap(":/icon/img/minimize.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.minimizeBtn.setIcon(icon)
         self.minimizeBtn.setIconSize(QtCore.QSize(14, 14))
         self.minimizeBtn.setObjectName("minimizeBtn")
@@ -46,7 +50,11 @@ class Interface(object):
         self.maximizeBtn.setMinimumSize(QtCore.QSize(20, 20))
         self.maximizeBtn.setMaximumSize(QtCore.QSize(20, 20))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icon/img/maximize.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(
+            QtGui.QPixmap(":/icon/img/maximize.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.maximizeBtn.setIcon(icon1)
         self.maximizeBtn.setIconSize(QtCore.QSize(14, 14))
         self.maximizeBtn.setObjectName("maximizeBtn")
@@ -55,7 +63,11 @@ class Interface(object):
         self.exitBtn.setMinimumSize(QtCore.QSize(20, 20))
         self.exitBtn.setMaximumSize(QtCore.QSize(20, 20))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icon/img/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(
+            QtGui.QPixmap(":/icon/img/exit.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.exitBtn.setIcon(icon2)
         self.exitBtn.setIconSize(QtCore.QSize(14, 14))
         self.exitBtn.setObjectName("exitBtn")
@@ -65,7 +77,7 @@ class Interface(object):
         self.videoWidget = QtWidgets.QWidget(parent=Form)
         self.videoWidget.setObjectName("videoWidget")
         self.videoWidgetLayout = QtWidgets.QVBoxLayout()
-        self.videoWidgetLayout.setContentsMargins(0,0,0,0)
+        self.videoWidgetLayout.setContentsMargins(0, 0, 0, 0)
         self.videoWidget.setLayout(self.videoWidgetLayout)
         self.verticalLayout_2.addWidget(self.videoWidget)
         self.playerWidget = QtWidgets.QWidget(parent=Form)
@@ -120,7 +132,11 @@ class Interface(object):
         self.backwordBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.backwordBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icon/img/backword.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(
+            QtGui.QPixmap(":/icon/img/backword.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.backwordBtn.setIcon(icon3)
         self.backwordBtn.setIconSize(QtCore.QSize(24, 24))
         self.backwordBtn.setObjectName("backwordBtn")
@@ -129,7 +145,11 @@ class Interface(object):
         self.playBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.playBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icon/img/play.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(
+            QtGui.QPixmap(":/icon/img/play.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.playBtn.setIcon(icon4)
         self.playBtn.setIconSize(QtCore.QSize(24, 24))
         self.playBtn.setObjectName("playBtn")
@@ -138,7 +158,11 @@ class Interface(object):
         self.forwordBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.forwordBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icon/img/forword.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon5.addPixmap(
+            QtGui.QPixmap(":/icon/img/forword.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.forwordBtn.setIcon(icon5)
         self.forwordBtn.setIconSize(QtCore.QSize(24, 24))
         self.forwordBtn.setObjectName("forwordBtn")
@@ -156,7 +180,11 @@ class Interface(object):
         self.repeatBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.repeatBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icon/img/repeat.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon6.addPixmap(
+            QtGui.QPixmap(":/icon/img/repeat.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.repeatBtn.setIcon(icon6)
         self.repeatBtn.setIconSize(QtCore.QSize(24, 24))
         self.repeatBtn.setObjectName("repeatBtn")
@@ -165,7 +193,11 @@ class Interface(object):
         self.fullScreenBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.fullScreenBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icon/img/full_screen.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon7.addPixmap(
+            QtGui.QPixmap(":/icon/img/full_screen.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.fullScreenBtn.setIcon(icon7)
         self.fullScreenBtn.setIconSize(QtCore.QSize(24, 24))
         self.fullScreenBtn.setObjectName("fullScreenBtn")
@@ -174,7 +206,11 @@ class Interface(object):
         self.muteBtn.setMinimumSize(QtCore.QSize(30, 30))
         self.muteBtn.setMaximumSize(QtCore.QSize(30, 30))
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icon/img/speaker_100%.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon8.addPixmap(
+            QtGui.QPixmap(":/icon/img/speaker_100%.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.muteBtn.setIcon(icon8)
         self.muteBtn.setIconSize(QtCore.QSize(24, 24))
         self.muteBtn.setObjectName("muteBtn")
@@ -196,13 +232,14 @@ class Interface(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        self.headingLabel.setText(_translate("Form", "YT Player"))
+        self.headingLabel.setText(_translate("Form", "GenZ Player"))
         self.currentDurationLabel.setText(_translate("Form", "00:00:00"))
         self.videoDurationLabel.setText(_translate("Form", "00:00:00"))
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Interface(Form)

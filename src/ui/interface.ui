@@ -200,7 +200,7 @@ QMenu::item:selected {
       <item>
        <widget class="QLabel" name="headingLabel">
         <property name="text">
-         <string>YT Player - Video.mp4</string>
+         <string>GenZ Player - Video.mp4</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

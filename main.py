@@ -1,6 +1,21 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QMenu, QFileDialog, QProxyStyle, QStyle
+from PyQt6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QWidget,
+    QMenu,
+    QFileDialog,
+    QProxyStyle,
+    QStyle,
+)
 from PyQt6.QtCore import QUrl, Qt, QTimer
-from PyQt6.QtGui import QKeyEvent, QPixmap, QCursor, QMouseEvent, QContextMenuEvent, QFontDatabase
+from PyQt6.QtGui import (
+    QKeyEvent,
+    QPixmap,
+    QCursor,
+    QMouseEvent,
+    QContextMenuEvent,
+    QFontDatabase,
+)
 from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PyQt6.QtMultimediaWidgets import QVideoWidget
 from custom_widgets import Icon
@@ -31,12 +46,12 @@ class MainWindow(QMainWindow):
                 self.settings = json.load(f)
         except:
             self.settings = {"volume": 100, "muted": False}
-        
+
         try:
             self.file = sys.argv[1]
         except:
             self.file = None
-        
+
         self.repeat_video = False
         self.old_cursor_position = None
         self.hide_player_widget_time = 0
@@ -57,17 +72,21 @@ class MainWindow(QMainWindow):
 
         self.videoOutput.hide()
         self.ui.videoWidgetLayout.addWidget(self.videoOutput)
-        
+
         self.ui.playBtn.clicked.connect(self.play)
         self.ui.muteBtn.clicked.connect(self.mute)
-        self.ui.forwordBtn.clicked.connect(lambda: self.player.setPosition(self.player.position()+5000))
-        self.ui.backwordBtn.clicked.connect(lambda: self.player.setPosition(self.player.position()-5000))
+        self.ui.forwordBtn.clicked.connect(
+            lambda: self.player.setPosition(self.player.position() + 5000)
+        )
+        self.ui.backwordBtn.clicked.connect(
+            lambda: self.player.setPosition(self.player.position() - 5000)
+        )
         self.ui.fullScreenBtn.clicked.connect(self.full_screen)
         self.ui.repeatBtn.clicked.connect(self.repeat)
         self.ui.minimizeBtn.clicked.connect(self.showMinimized)
         self.ui.maximizeBtn.clicked.connect(self.maximize)
         self.ui.exitBtn.clicked.connect(self.exit)
-        
+
         self.ui.volumeSlider.valueChanged.connect(self.change_volume)
         self.player.positionChanged.connect(self.update_time_line)
         self.player.playingChanged.connect(self.playing_changed)
@@ -87,23 +106,36 @@ class MainWindow(QMainWindow):
         self.menu = QMenu(self)
         self.menu.setObjectName("menu")
         self.menu.addAction(Icon("open_file.png"), "Open File", self.open_file)
-        self.menu.addAction(Icon("keyboard.png"), "Shortcuts", lambda: Shortcuts(BASE_DIR).exec())
-        self.menu.addAction(Icon("author.png"), "Author", lambda: Author(BASE_DIR).exec())
+        self.menu.addAction(
+            Icon("keyboard.png"), "Shortcuts", lambda: Shortcuts(BASE_DIR).exec()
+        )
+        self.menu.addAction(
+            Icon("author.png"), "Author", lambda: Author(BASE_DIR).exec()
+        )
         self.menu.setCursor(QCursor(QPixmap(":/icon/img/cursor.png")))
 
         if not self.file is None:
             filename = self.file.split(PATH_POINT)[-1]
-            self.setWindowTitle(f"{filename} - YT Player")
-            self.ui.headingLabel.setText(f"{filename} - YT Player")
+            self.setWindowTitle(f"{filename} - GenZ Player")
+            self.ui.headingLabel.setText(f"{filename} - GenZ Player")
             self.player.setSource(QUrl.fromLocalFile(self.file))
-            
+
             if self.player.hasVideo():
-                QTimer.singleShot(2500, lambda: self.player.stop() or self.ui.playBtn.click() or QTimer.singleShot(50, self.videoOutput.show))
+                QTimer.singleShot(
+                    2500,
+                    lambda: (
+                        self.player.stop()
+                        or self.ui.playBtn.click()
+                        or QTimer.singleShot(50, self.videoOutput.show)
+                    ),
+                )
             else:
-                QTimer.singleShot(100, lambda: self.player.stop() or self.ui.playBtn.click())
+                QTimer.singleShot(
+                    100, lambda: self.player.stop() or self.ui.playBtn.click()
+                )
         else:
-            self.setWindowTitle("YT Player")
-            self.ui.headingLabel.setText("YT Player")
+            self.setWindowTitle("GenZ Player")
+            self.ui.headingLabel.setText("GenZ Player")
             self.ui.playBtn.setEnabled(False)
             self.ui.forwordBtn.setEnabled(False)
             self.ui.backwordBtn.setEnabled(False)
@@ -113,7 +145,6 @@ class MainWindow(QMainWindow):
             self.change_volume()
         if self.settings["muted"]:
             self.ui.muteBtn.click()
-
 
     def maximize(self):
         if self.isMaximized():
@@ -127,24 +158,25 @@ class MainWindow(QMainWindow):
             self.ui.headerWidget.setStyleSheet("#headerWidget{border-radius: 0px;}")
             self.ui.playerWidget.setStyleSheet("#playerWidget{border-radius: 0px;}")
 
-
     def exit(self):
         if self.audioOutput.isMuted():
             self.settings["muted"] = True
         else:
             self.settings["muted"] = False
-        
+
         self.settings["volume"] = self.ui.volumeSlider.value()
-        
+
         with open(f"{BASE_DIR}/settings.json", "w") as f:
             json.dump(self.settings, f)
-        
+
         self.player.stop()
         self.close()
 
-
     def play(self) -> None:
-        if not self.player.isPlaying() and self.player.position() == self.player.duration():
+        if (
+            not self.player.isPlaying()
+            and self.player.position() == self.player.duration()
+        ):
             self.player.setPosition(0)
             self.player.play()
             self.ui.videoTimeLine.playing = True
@@ -157,7 +189,6 @@ class MainWindow(QMainWindow):
             self.player.play()
             self.ui.videoTimeLine.playing = True
             self.ui.playBtn.setIcon(Icon("pause.png"))
-
 
     def mute(self) -> None:
         value = self.ui.volumeSlider.value()
@@ -175,13 +206,12 @@ class MainWindow(QMainWindow):
             self.ui.muteBtn.setIcon(Icon("speaker_muted.png"))
             self.audioOutput.setMuted(True)
 
-
     def change_volume(self) -> None:
         value = self.ui.volumeSlider.value()
-        
+
         if self.audioOutput.isMuted():
             self.audioOutput.setMuted(False)
-        
+
         if value == 0:
             self.audioOutput.setMuted(True)
             self.ui.muteBtn.setIcon(Icon("speaker_muted.png"))
@@ -189,38 +219,43 @@ class MainWindow(QMainWindow):
             self.ui.muteBtn.setIcon(Icon("speaker_100%.png"))
         else:
             self.ui.muteBtn.setIcon(Icon("speaker_50%.png"))
-        
-        self.audioOutput.setVolume(value/100)
 
+        self.audioOutput.setVolume(value / 100)
 
     def update_time_line(self) -> None:
         duration = self.player.duration()
         position = self.player.position()
         time_delta = timedelta(milliseconds=position)
         time = str(time_delta).split(".")[0]
-        
+
         if len(time) != 8:
             time = f"0{time}"
-        
+
         self.ui.videoTimeLine.setValue(position)
         self.ui.currentDurationLabel.setText(time)
 
-        if (position+200) > duration:
+        if (position + 200) > duration:
             if not self.videoOutput.isHidden():
                 self.videoOutput.hide()
         elif self.videoOutput.isHidden() and self.player.hasVideo():
-            QTimer.singleShot(500, lambda: self.videoOutput.show() if self.videoOutput.isHidden() and self.player.hasVideo() else None)
-
+            QTimer.singleShot(
+                500,
+                lambda: (
+                    self.videoOutput.show()
+                    if self.videoOutput.isHidden() and self.player.hasVideo()
+                    else None
+                ),
+            )
 
     def playing_changed(self) -> None:
         duration = self.player.duration()
         position = self.player.position()
         time_delta = timedelta(milliseconds=duration)
         time = str(time_delta).split(".")[0]
-        
+
         if len(time) != 8:
             time = f"0{time}"
-        
+
         self.ui.videoTimeLine.setMaximum(duration)
         self.ui.videoDurationLabel.setText(time)
 
@@ -232,10 +267,9 @@ class MainWindow(QMainWindow):
             self.player.pause()
             self.ui.playBtn.setIcon(Icon("play.png"))
 
-
     def full_screen(self) -> None:
         self.set_cursor()
-        
+
         if not self.isFullScreen():
             self.ui.headerWidget.hide()
             self.showFullScreen()
@@ -248,7 +282,6 @@ class MainWindow(QMainWindow):
             self.show_hide_player_widget_timer.stop()
             self.ui.fullScreenBtn.setIcon(Icon("full_screen.png"))
 
-
     def set_cursor(self, show=True) -> None:
         if show:
             self.setCursor(QCursor(QPixmap(":/icon/img/cursor.png")))
@@ -256,7 +289,6 @@ class MainWindow(QMainWindow):
         else:
             self.setCursor(QCursor(Qt.CursorShape.BlankCursor))
             self.cursor_showing = False
-
 
     def show_hide_player_widget(self) -> None:
         cursor_position = self.cursor().pos()
@@ -271,12 +303,18 @@ class MainWindow(QMainWindow):
         else:
             if self.cursor_showing and self.ui.playerWidget.isHidden():
                 self.set_cursor(False)
-            elif self.hide_player_widget_time != 0 and not self.ui.playerWidget.underMouse():
+            elif (
+                self.hide_player_widget_time != 0
+                and not self.ui.playerWidget.underMouse()
+            ):
                 self.hide_player_widget_time -= 100
-            elif not self.ui.playerWidget.isHidden() and not self.ui.playerWidget.underMouse() and self.hide_player_widget_time == 0:
+            elif (
+                not self.ui.playerWidget.isHidden()
+                and not self.ui.playerWidget.underMouse()
+                and self.hide_player_widget_time == 0
+            ):
                 self.ui.playerWidget.hide()
                 self.set_cursor(False)
-
 
     def repeat(self):
         if self.repeat_video:
@@ -286,52 +324,63 @@ class MainWindow(QMainWindow):
             self.repeat_video = True
             self.ui.repeatBtn.setStyleSheet("background-color: #ffbf3f;")
 
-
     def open_file(self):
-        filename, _ = QFileDialog.getOpenFileName(self, "Open Video", "", "All Media (*);;")
-        
+        filename, _ = QFileDialog.getOpenFileName(
+            self, "Open Video", "", "All Media (*);;"
+        )
+
         if filename:
             self.videoOutput.hide()
             QTimer.singleShot(
                 50,
-                lambda: self.player.stop()
-                or QTimer.singleShot(
-                    100,
-                    lambda: self.player.setSource(QUrl.fromLocalFile(filename))
+                lambda: (
+                    self.player.stop()
                     or QTimer.singleShot(
                         100,
-                        lambda: self.player.stop()
-                        or self.ui.playBtn.click()
-                        or QTimer.singleShot(
-                            100,
-                            lambda: self.videoOutput.show() if self.player.hasVideo() else self.videoOutput.hide()),
-                    ),
+                        lambda: (
+                            self.player.setSource(QUrl.fromLocalFile(filename))
+                            or QTimer.singleShot(
+                                100,
+                                lambda: (
+                                    self.player.stop()
+                                    or self.ui.playBtn.click()
+                                    or QTimer.singleShot(
+                                        100,
+                                        lambda: (
+                                            self.videoOutput.show()
+                                            if self.player.hasVideo()
+                                            else self.videoOutput.hide()
+                                        ),
+                                    )
+                                ),
+                            )
+                        ),
+                    )
                 ),
             )
-            
+
             if self.file is None:
                 self.ui.playBtn.setEnabled(True)
                 self.ui.forwordBtn.setEnabled(True)
                 self.ui.backwordBtn.setEnabled(True)
                 self.ui.videoTimeLine.setEnabled(True)
-            
-            self.file = filename
-            _filename = filename.split('/')[-1]
-            self.setWindowTitle(f"{_filename} - YT Player")
-            self.ui.headingLabel.setText(f"{_filename} - YT Player")
 
+            self.file = filename
+            _filename = filename.split("/")[-1]
+            self.setWindowTitle(f"{_filename} - GenZ Player")
+            self.ui.headingLabel.setText(f"{_filename} - GenZ Player")
 
     def header_widget_mouse_move(self, event: QMouseEvent | None) -> None:
         if not self.isMaximized():
             pos_x = int(int(event.globalPosition().x()) - (self.width() / 2))
-            pos_y = int(int(event.globalPosition().y()) - (self.ui.headerWidget.height() / 2))
+            pos_y = int(
+                int(event.globalPosition().y()) - (self.ui.headerWidget.height() / 2)
+            )
             self.move(pos_x, pos_y)
-
 
     def header_widget_mouse_db_click(self, event: QMouseEvent | None) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
             self.ui.maximizeBtn.click()
-
 
     def video_widget_mouse_db_click(self, event: QMouseEvent | None) -> None:
         if event.button() == Qt.MouseButton.LeftButton:
@@ -342,10 +391,8 @@ class MainWindow(QMainWindow):
             else:
                 self.ui.maximizeBtn.click()
 
-
     def video_widget_context_menu(self, event: QContextMenuEvent | None) -> None:
         self.menu.exec(event.globalPos())
-
 
     def keyPressEvent(self, event: QKeyEvent | None) -> None:
         if event.key() == Qt.Key.Key_Space:
@@ -385,16 +432,17 @@ if __name__ == "__main__":
         BASE_DIR = sys.argv[0][::-1].split(PATH_POINT, 1)[1][::-1]
     else:
         from pathlib import Path
+
         BASE_DIR = str(Path().resolve(__file__))
-    
+
     app = QApplication(sys.argv)
-    
+
     for font in FONTS:
         QFontDatabase.addApplicationFontFromData(bytes.fromhex(font))
-    
-    myStyle = MyProxyStyle('Fusion')
+
+    myStyle = MyProxyStyle("Fusion")
     app.setStyle(myStyle)
-    
+
     window = MainWindow()
     window.setMinimumSize(500, 400)
     window.resize(500, 400)
@@ -406,5 +454,5 @@ if __name__ == "__main__":
     #     window.setStyleSheet(f.read())
     window.setStyleSheet(style.STYLE)
     window.maximize()
-    
+
     sys.exit(app.exec())

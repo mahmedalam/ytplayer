@@ -148,7 +148,7 @@
        </font>
       </property>
       <property name="text">
-       <string>YT Player - Author</string>
+       <string>GenZ Player - Author</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

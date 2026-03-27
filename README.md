@@ -1,8 +1,8 @@
-# YT Player
+# GenZ Player
 
 **A free, open-source video and audio player with a clean, modern UI — built with Python and PyQt6.**
 
-![YT Player Preview](preview.svg)
+![GenZ Player Preview](preview.svg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.14%2B-blue)](https://www.python.org/)
@@ -80,7 +80,7 @@ The project uses [PyInstaller](https://pyinstaller.org/) for packaging.
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed --icon="YT Player.ico" main.py
+pyinstaller --onefile --windowed --icon="GenZ Player.ico" main.py
 ```
 
 The compiled executable will be in the `dist/` folder.
@@ -142,7 +142,7 @@ When you download the Windows `.exe` from the official releases page, the binary
 
 ### Privacy policy
 
-This program does **not** transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. YT Player has no telemetry, analytics, or network activity of any kind.
+This program does **not** transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. GenZ Player has no telemetry, analytics, or network activity of any kind.
 
 ### Verifying a signature
 

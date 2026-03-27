@@ -29,7 +29,11 @@ class Ui_Author(object):
         self.exitBtn.setMinimumSize(QtCore.QSize(20, 20))
         self.exitBtn.setMaximumSize(QtCore.QSize(20, 20))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icon/img/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(
+            QtGui.QPixmap(":/icon/img/exit.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.exitBtn.setIcon(icon)
         self.exitBtn.setIconSize(QtCore.QSize(14, 14))
         self.exitBtn.setObjectName("exitBtn")
@@ -46,11 +50,12 @@ class Ui_Author(object):
 
     def retranslateUi(self, Author):
         _translate = QtCore.QCoreApplication.translate
-        self.headingLabel.setText(_translate("Author", "Author - YT Player"))
+        self.headingLabel.setText(_translate("Author", "Author - GenZ Player"))
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Author = QtWidgets.QWidget()
     ui = Ui_Author(Author)

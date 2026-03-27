@@ -29,7 +29,11 @@ class Ui_Shortcuts(object):
         self.exitBtn.setMinimumSize(QtCore.QSize(20, 20))
         self.exitBtn.setMaximumSize(QtCore.QSize(20, 20))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icon/img/exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(
+            QtGui.QPixmap(":/icon/img/exit.png"),
+            QtGui.QIcon.Mode.Normal,
+            QtGui.QIcon.State.Off,
+        )
         self.exitBtn.setIcon(icon)
         self.exitBtn.setIconSize(QtCore.QSize(14, 14))
         self.exitBtn.setObjectName("exitBtn")
@@ -41,11 +45,12 @@ class Ui_Shortcuts(object):
     def retranslateUi(self, Shortcuts):
         _translate = QtCore.QCoreApplication.translate
         Shortcuts.setWindowTitle(_translate("Shortcuts", "Form"))
-        self.headingLabel.setText(_translate("Shortcuts", "Shortcuts - YT Player"))
+        self.headingLabel.setText(_translate("Shortcuts", "Shortcuts - GenZ Player"))
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Shortcuts = QtWidgets.QWidget()
     ui = Ui_Shortcuts(Shortcuts)
