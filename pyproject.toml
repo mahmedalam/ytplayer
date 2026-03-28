@@ -1,5 +1,5 @@
 [project]
-name = "ytplayer"
+name = "genzplayer"
 version = "0.1.0"
 description = "A free, open-source video and audio player with a clean, modern UI — built with Python and PyQt6."
 readme = "README.md"
